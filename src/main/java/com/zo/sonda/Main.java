@@ -1,5 +1,6 @@
 package com.zo.sonda;
 
+import com.zo.sonda.exceptions.NotEnoughArgumentsException;
 import com.zo.sonda.model.Direction;
 import com.zo.sonda.model.Planalto;
 import com.zo.sonda.model.Pontos;
@@ -22,8 +23,11 @@ public class Main {
         List<Pontos> todosPontos = new ArrayList<>();
 
         int qtdSondas = ls.size() / 2;
+        if (qtdSondas * 2 != ls.size()) {
+            throw new NotEnoughArgumentsException("Quantidade insuficiente de comandos.");
+        }
 
-        for (int i = 0;  i <= (qtdSondas - 1); i++) {
+        for (int i = 1;  i <= qtdSondas; i++) {
             List<String> pontosParams = Arrays.asList(ls.remove(0).split(" "));
 
             Pontos pontos = getPontos(pontosParams);
